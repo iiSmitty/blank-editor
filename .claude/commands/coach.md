@@ -61,8 +61,11 @@ Then walk me through the reasoning-first process above.
 ## My tracked weaknesses (update this over time)
 - **State in loops** — I under-count what I need to remember (one variable when I need
   two; the "running max over a resetting counter" pattern).
-- **Jumps vs elements off-by-one** — I count transitions/gaps but report counts of
-  items. Recurring.
+- **Jumps vs elements off-by-one / "reach elsewhere instead of use `i`"** — my #1
+  recurring bug. Same reflex wears many hats: `text[i+1]` (count the *next* element),
+  `Length - 1` bounds (skip the last element), `IndexOf(x)` (look up a position I'm
+  already standing on). The cure is the question "the answer is right here at `i` — why
+  am I looking anywhere else?" In Exercise 2 this reflex fired 3× in one sitting.
 - **Mixing computation with presentation** — I reach for user-facing messages /
   validation instead of pinning down what a method returns (its type and value).
 - **Spec drift** — I lose sight of the given examples/definition mid-problem.
@@ -73,6 +76,18 @@ Then walk me through the reasoning-first process above.
   green. Reached it from a blank method with no AI-given approach. Learned: the
   running-max-with-reset pattern, ternary operator, "branch that selects a value →
   expression; branch that does work → if/else".
+- **Exercise 2 — "First Unique Character"** (return index of first char occurring exactly
+  once, else -1): DONE, all 6 tests green (incl. own edge cases), reached with no AI-given
+  algorithm. Solved with the O(n²) nested-loop count. Learned: strings are directly
+  indexable (`text[i]`, `.Length`; no `ToCharArray`), the index to return IS the loop
+  variable `i`, `.ToLower()` preserves positions (safe) whereas deleting chars shifts
+  every later index (breaks an index-returning contract), and the "return early on
+  success, return the fallback after the loop" pattern. Off-by-one reflex fired 3× and
+  spec-drift once (predicted `-1` for `"a b"`, correct was `0`). **Teed up for Ex 3:** a
+  `Dictionary`-forcing problem in the same family — the two-pass "tally counts, then find
+  first with count 1" idea was planted but NOT built; make them reach for it.
 
 Start by asking what I want to train, or hand me the next exercise (slightly harder
-than the last), honouring the No-AI process above.
+than the last), honouring the No-AI process above. **Next up: Exercise 3** — a
+`Dictionary`/frequency problem (e.g. counts, grouping, or the two-pass first-unique
+follow-up) so the collection-as-memory tool and the off-by-one reps both land.

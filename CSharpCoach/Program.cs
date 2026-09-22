@@ -8,6 +8,7 @@ public static class Program
     private static readonly List<IExercise> Exercises = new()
     {
         new Exercise01_WarmestStreak(),
+        new Exercise02_FirstUniqueChar(),
     };
 
     public static void Main()
