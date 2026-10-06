@@ -108,7 +108,8 @@ Then walk me through the reasoning-first process above.
   both loops to `foreach` unaided, 8/8 green. BUT the `null` / `""` / empty-array
   distinction is still shaky in words: three tries at test labels kept calling `[]` a
   "null array" and `""` "no value" — revisit this (a nullability/defaults exercise).
-  Not yet adopted: `!` instead of `== false`; guard clause at the top of the method.
+  Also adopted unprompted-by-code: `!` instead of `== false`, and the null guard clause
+  moved to the top of the method.
 
 Start by asking what I want to train, or hand me the next exercise, honouring the No-AI
 process above. **Next up: Exercise 4** — first CONSOLIDATE: re-solve Exercise 2 (first
