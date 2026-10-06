@@ -70,6 +70,10 @@ Then walk me through the reasoning-first process above.
   validation instead of pinning down what a method returns (its type and value).
 - **Spec drift** — I lose sight of the given examples/definition mid-problem.
 - **Jumping toward code before fully framing the problem.**
+- **Explaining *why*** — I answer "what happens" but skip "why does it work" questions
+  (skipped 3× in Ex 3). Keep asking; don't accept a result without the reason.
+- **Cost reasoning** — new to me. Ex 3: didn't multiply nested loop counts, confused a
+  billion with a trillion, confused "elements looked at" with "passes".
 
 ## Progress
 - **Exercise 1 — "Warmest Streak"** (longest strictly-increasing run): DONE, all tests
@@ -86,8 +90,28 @@ Then walk me through the reasoning-first process above.
   spec-drift once (predicted `-1` for `"a b"`, correct was `0`). **Teed up for Ex 3:** a
   `Dictionary`-forcing problem in the same family — the two-pass "tally counts, then find
   first with count 1" idea was planted but NOT built; make them reach for it.
+- **Exercise 3 — "Most Frequent Word"** (most frequent word, ties → earliest first
+  appearance; 1M-word constraint): all 5 provided tests green (perf 1ms) with a two-pass
+  `Dictionary` solution, BUT it took heavy scaffolding — I asked for stronger hints, was
+  given the two-pass outline and a pass-2 skeleton with blanks. Wrote pass 1 unaided.
+  Got there myself: key = word / value = count (after first trying count→word, then
+  index→word), `>` vs `>=` tie behaviour via my own trace tables, "single pass can't pick
+  the winner because counts aren't final yet", dictionary declared before the loop.
+  Learned: `Dictionary` basics, nested loops MULTIPLY / sequential loops ADD, `null` vs
+  `""` vs empty array, `string?`, "your trace table IS the code", "when every result is
+  the starting value, the update never ran — check its guard". Slips: asked about case
+  when spec said case-sensitive (spec drift); said a 1,000,000-element loop runs 999,999
+  times (off-by-one reflex, with no code in sight); 10⁶×10⁶ = "a billion"; counted
+  elements visited as "passes"; drew the dictionary holding only the latest entry (state);
+  reversed the comparison (`bestCount > count`); skipped "why" questions 3×.
+  Then DONE: added own edge tests (`[]`→null, `[""]`→`""`, 5-way tie→"happy"), refactored
+  both loops to `foreach` unaided, 8/8 green. BUT the `null` / `""` / empty-array
+  distinction is still shaky in words: three tries at test labels kept calling `[]` a
+  "null array" and `""` "no value" — revisit this (a nullability/defaults exercise).
+  Not yet adopted: `!` instead of `== false`; guard clause at the top of the method.
 
-Start by asking what I want to train, or hand me the next exercise (slightly harder
-than the last), honouring the No-AI process above. **Next up: Exercise 3** — a
-`Dictionary`/frequency problem (e.g. counts, grouping, or the two-pass first-unique
-follow-up) so the collection-as-memory tool and the off-by-one reps both land.
+Start by asking what I want to train, or hand me the next exercise, honouring the No-AI
+process above. **Next up: Exercise 4** — first CONSOLIDATE: re-solve Exercise 2 (first
+unique char) in O(n) with a Dictionary, unaided — the same two-pass shape as Ex 3, no
+outline given. Only scaffold if I explicitly ask. After that, rotate away from LeetCode
+(debugging / code-reading exercise) while keeping loops-and-collections in play.

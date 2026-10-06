@@ -9,6 +9,7 @@ public static class Program
     {
         new Exercise01_WarmestStreak(),
         new Exercise02_FirstUniqueChar(),
+        new Exercise03_MostFrequentWord(),
     };
 
     public static void Main()
